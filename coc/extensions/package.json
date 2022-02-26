@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "coc-clangd": ">=0.20.1",
+    "coc-diagnostic": ">=0.23.1",
+    "coc-flutter": ">=1.9.7",
+    "coc-html": ">=1.6.1",
+    "coc-htmldjango": ">=0.9.5",
+    "coc-jedi": ">=0.30.1",
+    "coc-lightbulb": ">=0.0.6",
+    "coc-rls": ">=1.1.6",
+    "coc-sh": ">=0.6.1",
+    "coc-snippets": ">=2.4.7",
+    "coc-tsserver": ">=1.9.10",
+    "coc-vimlsp": ">=0.12.5"
+  }
+}
