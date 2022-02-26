@@ -70,7 +70,7 @@ nnoremap <C-j> :cnext<CR>zzzv
 
 
 " for coc
-source /home/bharathg/.config/nvim/plug-config/coc.vim
+source ~/.config/nvim/plug-config/coc.vim
 
 
 colorscheme gruvbox8_hard
