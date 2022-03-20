@@ -1,0 +1,319 @@
+[colors]
+
+[colors/gruvbox-dark]
+bg = #282828
+red = #cc241d
+green = #98971a
+yellow = #d79921
+blue = #458588
+purple = #b16286
+aqua = 689d6a
+gray-light = #a89984
+gray = #928374
+red-light = #fb4934
+green-light = #b8bb26
+yellow-light = #fabd2f
+blue-light = #83a598
+purple-light = #d3869b
+aqua-light = #8ec07c
+fg = #ebdbb2
+
+[colors]
+background = ${colors/gruvbox-dark.bg}
+foreground = ${colors/gruvbox-dark.fg}
+alert = ${colors/gruvbox-dark.red}
+gray =  ${colors/gruvbox-dark.gray}
+yellow = ${colors/gruvbox-dark.yellow}
+blue = ${colors/gruvbox-dark.blue}
+green = ${colors/gruvbox-dark.green}
+purple = ${colors/gruvbox-dark.purple}
+
+[bar/top]
+monitor = ${env:MONITOR:}
+; Size
+width  = 100%
+height = 30
+
+; Offset
+;offset-x = 50%
+;offset-y = 50%
+
+; Position
+bottom = false
+
+; Radius
+radius = 0
+
+; Align modules fixed to middle
+fixed-center = true
+
+; Colors
+background = ${colors.background}
+foreground = ${colors.grey}
+
+; Underline
+line-size  = 2
+line-color = ${colors.foreground}
+
+; Border
+border-size  = 0
+border-color = ${colors.background}
+
+; Padding
+padding-left  = 0
+padding-right = 4
+
+; Margin of modules
+module-margin-left  = 0
+module-margin-right = 2.5
+
+; Font
+font-0 = Iosevka:size=11;3
+font-1 = Font Awesome:style=Regular:size=12;3
+
+; Modules
+modules-left   = i3
+modules-center = weather time date
+modules-right  = network memory-info cpu-info system-cpu-frequency network lock logout poweroff 
+
+; Cursor actions
+cursor-click  = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+
+; Pin workspaces
+pin-workspaces = true
+
+; Mouse click
+enable-click = true
+
+; Mouse scroll
+enable-scroll = false
+
+; Sort
+index-sort = false
+
+; Display icons
+fuzzy-match = true
+
+; Icons
+ws-icon-0       = 1;
+ws-icon-1       = 2;
+ws-icon-2       = 3;
+ws-icon-3       = 4;
+ws-icon-4       = 5;
+ws-icon-5       = 6;
+ws-icon-default = 
+
+
+; Focused label
+label-focused            = %icon%
+label-focused-foreground = ${colors.green}
+label-focused-padding    = 2
+
+; Unfocused labels
+label-unfocused         = %icon%
+label-unfocused-padding = 2
+
+; Visible labels
+label-visible         = %icon%
+label-visible-padding = 2
+
+; Urgent labels
+label-urgent            = %icon%
+label-urgent-foreground = ${colors.red}
+label-urgent-padding    = 2
+
+bar-used-width = 5
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+[module/weather]
+type = custom/script
+
+; Update interval
+interval = 600
+
+; Label
+label         = %output%
+label-padding = 4
+
+[module/time]
+type = internal/date
+
+; Update interval
+interval = 1.0
+
+; Format
+time = %%{F#fff}%H:%M
+
+; Label
+label         =   %time%
+label-padding = 4
+
+[module/date]
+type = internal/date
+
+; Update interval
+interval = 60.0
+
+; Format
+date = %%{F#999}%Y-%m-%d%%{F-} 
+
+; Label
+label         =   %date%
+label-padding = 4
+
+[module/audio]
+type = internal/pulseaudio
+
+; Volume label
+label-volume            = 
+label-volume-foreground = ${colors.cyan}
+label-volume-padding    = 2
+
+; Muted label
+label-muted            = 
+label-muted-foreground = ${colors.red}
+label-muted-padding    = 2
+
+
+[module/memory-info]
+type = custom/script
+exec = ~/.config/polybar/memory.sh
+click-left = ~/.config/polybar/memory.sh --popup
+format-underline = ${colors.foreground}
+
+[module/wlan]
+lable-connected = %{A1:nm-connections-editor:}%essid%%{A}
+
+
+[module/cpu-info]
+type = custom/script
+exec = ~/.config/polybar/cpu.sh
+click-left = ~/.config/polybar/cpu.sh --popup
+format-underline = ${colors.primary}
+content-foreground= $(colors.foreground)
+
+[module/system-cpu-frequency]
+type = custom/script
+exec = ~/.config/polybar/system-cpu-frequency.sh
+content-foreground= $(colors.background)
+interval = 10
+
+[module/network]
+type = internal/network
+
+; Interface
+interface = %{A1:nm-connection-editor:}%essid%%{A}
+
+; Connected label
+label-connected            = 
+label-connected-foreground = ${colors.green}
+label-connected-padding    = 2
+
+; Disconnected label
+label-disconnected            = 
+label-disconnected-foreground = ${colors.red}
+label-disconnected-padding    = 2
+
+[module/lock]
+type = custom/text
+
+; Label
+content            =  
+content-foreground = ${colors.foreground}
+content-padding    = 2
+
+; Mouse click
+click-left = i3lock-fancy -f Roboto-Regular -t ""
+
+[module/logout]
+type = custom/text
+
+; Label
+content            = 
+; content-foreground = ${colors.foreground}
+content-padding    = 2
+
+; Mouse click
+click-left = i3-msg exit
+
+[module/poweroff]
+type = custom/text
+
+; Label
+content            = 
+content-foreground = ${colors.red}
+content-padding    = 2
+
+; Mouse click
+click-left = poweroff
+
+[settings]
+screenchange-reload     = true
+;compositing-background = xor
+;compositing-foreground = source
+;compositing-border     = over
+;pseudo-transparency    = false
+
+[global/wm]
+margin-top    = 10
+margin-bottom = 10
+
+;[module/consumption]
+;type = custom/script
+;exec = /home/bharathg/.config/polybar/power.sh
+;interval = 2
+;
+;[module/battery]
+;type = internal/battery
+;full-at = 98
+;
+;format-charging = <animation-charging> <label-charging>
+;format-discharging = <ramp-capacity> <label-discharging>
+;format-full = <ramp-capacity> <label-full>
+;
+;label-charging = %percentage%% %time%h
+;label-discharging = %percentage%% %time%h 
+;ramp-capacity-0 = 
+;ramp-capacity-0-foreground = #f53c3c
+;ramp-capacity-1 = 
+;ramp-capacity-1-foreground = #ffa900
+;ramp-capacity-2 = 
+;ramp-capacity-3 = 
+;ramp-capacity-4 = 
+;
+;bar-capacity-width = 10
+;bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+;bar-capacity-fill = █
+;bar-capacity-fill-foreground = #ddffffff
+;bar-capacity-fill-font = 3
+;bar-capacity-empty = █
+;bar-capacity-empty-font = 3
+;bar-capacity-empty-foreground = #44ffffff
+;
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
+;animation-charging-3 = 
+;animation-charging-4 = 
+;animation-charging-framerate = 750
+;
+;[module/cpu]
+;type = internal/cpu
+;interval = 0.5
+;format = <label> <ramp-coreload>
+;label = CPU
