@@ -7,7 +7,7 @@ function M.config()
   end
 
   toggleterm.setup(require("core.utils").user_plugin_opts("plugins.toggleterm", {
-    size = 10,
+    size = 2,
     open_mapping = [[<c-\>]],
     hide_numbers = true,
     shade_filetypes = {},
